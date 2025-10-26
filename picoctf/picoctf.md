@@ -6,5 +6,5 @@
 - [Forensics]()
 - [Web Exploitation]()
 - [Cryptography]()
-- [Binary Exploitation]()
-- [Hardware]()
+- [Binary Exploitation](./binex/binex.md)
+- [Hardware](./hardware/hardware.md)
