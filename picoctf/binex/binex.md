@@ -2,7 +2,7 @@
 
 ## 1. buffer overflow 0
 
-The challenge is to overflow the correct buffer to get the flag. We have the source code file with the executable (same as the one that is running on the instance with the actual flag file)
+> The challenge is to overflow the correct buffer to get the flag. We have the source code file with the executable (same as the one that is running on the instance with the actual flag file)
 
 - Source Code: [vuln.c](./buf0/vuln.c)
 - Executable: [vuln](./buf0/vuln)
@@ -64,7 +64,7 @@ picoCTF{ov3rfl0ws_ar3nt_that_bad_ef01832d}
 
 ## 2. format string 0
 
-The challenge is to use format string to exploit the program and get the flag
+> The challenge is to use format string to exploit the program and get the flag
 
 - Source Code: [format-string-0.c](./formatstr0/format-string-0.c)
 - Binary: [format-string-0](./formatstr0/format-string-0)
@@ -141,7 +141,7 @@ picoCTF{7h3_cu570m3r_15_n3v3r_SEGFAULT_dc0f36c4}
 
 ## 3. clutter-overflow
 
-The challenge is to use buffer overflow to set the `code` variable to `0xdeadbeef`
+> The challenge is to use buffer overflow to set the `code` variable to `0xdeadbeef`
 
 - Source Code: [chall.c](./clutteroverflow/chall.c)
 - Binary: [chall](./clutteroverflow/chall)
