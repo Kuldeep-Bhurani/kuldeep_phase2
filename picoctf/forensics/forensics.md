@@ -61,6 +61,7 @@ E: Unable to correct problems, you have held broken packages.
 - Now according to the program and above texts we can discern that steghide was used to hide some data inside of the images using the passkey DUEDILIGENCE. So I tried to run `steghide extract` for the three images obtained
 
 > _picture1.bmp_
+<br />
 ![picture1.bmp](./tftp/picture1.bmp)
 
 ```bash
@@ -69,6 +70,7 @@ steghide: could not extract any data with that passphrase!
 ```
 
 > _picture2.bmp_
+<br />
 ![picture2.bmp](./tftp/picture2.bmp)
 
 ```bash
@@ -77,6 +79,7 @@ steghide: could not extract any data with that passphrase!
 ```
 
 > _picture3.bmp_
+<br />
 ![picture3.bmp](./tftp/picture3.bmp)
 
 ```bash
