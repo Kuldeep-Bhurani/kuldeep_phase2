@@ -205,7 +205,7 @@ The challenge is to decode the given message and get the flag. File given is:
 
 - I wasn't able to discern what type of encoding this is so, I took a hint and that was `how did pictures from moon landing get sent to Earth?` and when I googled this I got the answer to be `SSTV Telecast` (Slow-Scan Television Telecast)
 
-- Next I used an online decoder to decode the SSTV signal and got an image
+- Next I used an online decoder to decode the SSTV signal and got an image which has the flag in it
 
 ![sstv out](./m00nwalk/sstv.png "sstv out")
 
