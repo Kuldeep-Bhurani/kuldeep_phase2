@@ -6,7 +6,7 @@ The challenge is to figure out what is in the `eax` register at the end of the m
 
 Flag layout: `picoCTF{base10(n)}` where `n` is the value in `eax` register
 
-Challenge Files:
+Challenge File:
 - [debugger0_a](./GDBbs1/debugger0_a)
 
 ### My Solution
@@ -67,7 +67,7 @@ The challenge is to figure out for what argument does this program print `win` w
 
 Flag layout: `picoCTF{XXXXXXXX}`  (XXXXXXXX -> hex, lowercase, no 0x, and 32 bits)
 
-Challenge File
+Challenge File:
 - [chall_1.S](./ARMassembly1/chall_1.S)
 
 ### My Solution
@@ -90,7 +90,7 @@ Challenge File
 
 The challenge is to find the password to the vault door
 
-Challenge File
+Challenge File:
 - [VaultDoor3.java](./vaultdoor3/VaultDoor3.java)
 
 ### My Solution
