@@ -4,7 +4,7 @@
 
 - [Reverse Engg.](./revengg/revengg.md)
 - [Forensics](./forensics/forensics.md)
-- [Web Exploitation]()
+- [Web Exploitation](./webex/webex.md)
 - [Cryptography]()
 - [Binary Exploitation](./binex/binex.md)
 - [Hardware](./hardware/hardware.md)
