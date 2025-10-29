@@ -7,7 +7,7 @@ Challenge Files:
 - [desc.txt](./iq-test/desc.txt)
 - [iqtest.png](./iq-test/iqtest.png)
 
-> from desc: x = 30478191278
+> from desc: x = 30478191278\
 > flag format given in `desc` file
 
 ### My Solve
