@@ -46,21 +46,7 @@ decrypted ciphertext: 1
 
 - So basically the `oracle` is using RSA encryption where to encode it uses `c = m ^ e mod n` and to decode it uses `m = c ^ d mod n`
 
-- Now to decode the password we need to find out the value of the private key `d`
-
-- For the input I have entered above, `c` is `0x5386f33679120a440b9dabace3dcfd599bcabc06f1d1f0d1c5f395d86311e42c58dd2ffebc1291cc22ecfec6a06615436282779b7c609377c3c9121ef8f8c4d1` or `4374671741411819653095065203638363839705760144524191633605358134684143978321095859047126585649272872908765432040943055399247499744070371810470682366100689`, `m` is `0x31` and assuming `e` is `0x10001` or `25537` we can figure out the value of `n`
-
-- k<sub>1</sub>n = m ^ e - c (where k<sub>1</sub> is some integer)
-
-- Now if I do the same for another input value say `2`, i can get a different value for k
-
-- k<sub>2</sub>n = m ^ e - c
-
-- And we can just find out the value of n by calculating the gcd of these 2 k<sub>i</sub>*n
-
-- Now, I wasn't able to proceed through this method so, I though of using brute-force to find `n` basically if `n` is small enough we can brute it due to the `mod n` in our expression so, when our output is of length 1 we find that n is a multiple of 1 smaller than that length 
-
-- But this method also failed
+- 2 of My Solution didn't go as planned: [Failed Solutions](#failed-solutions)
 
 - So, I tried it another way which was to exploit the basic mathematics of the system as follows:
     - We know that `m ^ e mod n = c1` and `k ^ e mod n = c2` so `c1*c2` becomes `(m*k) ^ e mod n`
@@ -69,6 +55,7 @@ decrypted ciphertext: 1
 
 - Next step was to impliment this using a python script
 
+> _soln.py_
 ```python
 from pwn import *
 
@@ -106,6 +93,15 @@ print(byte_array.decode('ascii'))
 connection.close()
 ```
 
+```bash
+$ python3 soln.py
+[+] Opening connection to titan.picoctf.net on port 64389: Done
+ 6468c4c6c4
+
+0x3234626362
+24bcb
+```
+
 - After running this script we get out password which is `24bcb`
 
 - Now, I wasn't able to progress further without taking a hint so I did and I found out that I have to use `openssl` to decrypt the message 
@@ -118,6 +114,24 @@ $ openssl enc -aes-256-cbc -d -in secret.enc -k 24bcb
 Using -iter or -pbkdf2 would be better.
 picoCTF{su((3ss_(r@ck1ng_r3@_24bcbc66}
 ```
+
+### Failed Solutions
+
+- To decode the password we need to find out the value of the private key `d`
+
+- For the input I have entered above, `c` is `0x5386f33679120a440b9dabace3dcfd599bcabc06f1d1f0d1c5f395d86311e42c58dd2ffebc1291cc22ecfec6a06615436282779b7c609377c3c9121ef8f8c4d1` or `4374671741411819653095065203638363839705760144524191633605358134684143978321095859047126585649272872908765432040943055399247499744070371810470682366100689`, `m` is `0x31` and assuming `e` is `0x10001` or `25537` we can figure out the value of `n`
+
+- k<sub>1</sub>n = m ^ e - c (where k<sub>1</sub> is some integer)
+
+- Now if I do the same for another input value say `2`, i can get a different value for k
+
+- k<sub>2</sub>n = m ^ e - c
+
+- And we can just find out the value of n by calculating the gcd of these 2 k<sub>i</sub>*n
+
+- Now, I wasn't able to proceed through this method so, I though of using brute-force to find `n` basically if `n` is small enough we can brute it due to the `mod n` in our expression so, when our output is of length 1 we find that n is a multiple of 1 smaller than that length 
+
+- But this method also failed
 
 ## 2. Custom encryption
 
