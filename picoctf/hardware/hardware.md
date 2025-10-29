@@ -8,7 +8,6 @@ Challenge Files:
 - [iqtest.png](./iq-test/iqtest.png)
 
 > from desc: x = 30478191278
-
 > flag format given in `desc` file
 
 ### My Solve
