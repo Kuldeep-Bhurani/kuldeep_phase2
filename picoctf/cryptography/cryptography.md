@@ -133,6 +133,24 @@ picoCTF{su((3ss_(r@ck1ng_r3@_24bcbc66}
 
 - But this method also failed
 
+### Notes
+
+I could've used `binwalk` and/or file `commands` instead of hints to find out the way this file was encoded or get more information on these files
+
+```bash
+$ binwalk secret.enc
+
+DECIMAL       HEXADECIMAL     DESCRIPTION
+--------------------------------------------------------------------------------
+0             0x0             OpenSSL encryption, salted, salt: 0x67D6DDC53027205E
+
+$ file secret.enc
+secret.enc: openssl enc'd data with salted password
+
+$ file password.enc
+password.enc: ASCII text, with no line terminators
+```
+
 ## 2. Custom encryption
 
 The challenge is to decrypt `enc_flag` by getting a sense of the code in `custom_encryption.py` and writing a function

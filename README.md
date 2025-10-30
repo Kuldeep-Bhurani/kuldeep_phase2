@@ -2,3 +2,6 @@
 
 ## PicoCTF
 - [PicoCTF](./picoctf/picoctf.md)
+
+## Cryptopals
+- [Cryptopals](./cryptopals/cryptopals.md)
