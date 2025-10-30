@@ -106,7 +106,7 @@ Challenge Files:
 
 ### My Solve
 
-**Flag:**``
+**Flag:**`TFCCTF{Th1s_1s_som3_s1mpl3_4rdu1no_f1rmw4re}`
 
 **Steps:**
 - My first step was to run `file` command on the `firmware.elf` file
