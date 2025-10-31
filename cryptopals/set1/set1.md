@@ -85,20 +85,54 @@ Given Inputs:
 
 ### My Solution
 
+**Flag:**`Cooking MC's like a pound of bacon`
+
 **Steps:**
 
 - Wrote a simple python script and ran it
 
 > _3.py_
 ```python
+encoded = '1b37373331363f78151b7f2b783431333d78397828372d363c78373e783a393b3736'
+
+def XORfn(hex_str, k):
+    byte_str = bytes.fromhex(hex_str)
+    return bytes([b ^ k for b in byte_str])
+
+# for c in "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ":
+#    print(f"key: {[c, ord(c)]}\tunXOR-ed: {XORfn(encoded, ord(c)).decode('utf-8')}")
+for i in range(255):
+    try:
+        print(f"key: {[chr(i), i]}\tunXOR-ed: {XORfn(encoded, i).decode('utf-8')}")
+    except:
+        print(f"Skipping {i}")
+
 ```
 
 ```bash
+$ python3 3.py > out3py
+```
+
+- Finally I perused the file to get the string of text
+
+[out3py](./out3py)
+
+> _out3py_
+```text
+...
+key: ['X', 88]	unXOR-ed: Cooking MC's like a pound of bacon
+...
 ```
 
 ## 4. Detect single-character XOR
 
+Out of 60 given hex strings in the given `4.txt` file we have one that has been encoded via xor-ring we have to find the string and decode it
+
+[4.txt](./4.txt)
+
 ### My Solution
+
+**Flag:**`Now that the party is jumping`
 
 **Steps:**
 
@@ -106,9 +140,38 @@ Given Inputs:
 
 > _4.py_
 ```python
+def XORfn(hex_str, k):
+    byte_str = bytes.fromhex(hex_str)
+    return bytes([b ^ k for b in byte_str])
+
+with open("4.txt", 'r') as file:
+        lines = file.readlines()
+        for line in lines:
+            encoded = line.strip()
+            print(f"----- ENCODED = {encoded} ------")
+            for i in range(255):
+                try:
+                    print(f"key: {[chr(i), i]}\tunXOR-ed: {XORfn(encoded, i).decode('utf-8')}")
+                except:
+                    pass
 ```
 
 ```bash
+$ python3 4.py > out4py
+```
+
+- Finally I perused the file to get the string of text
+
+[out4py](./out4py)
+
+> _out4py_
+```text
+...
+----- ENCODED = 7b5a4215415d544115415d5015455447414c155c46155f4058455c5b523f ------
+...
+
+key: ['5', 53]	unXOR-ed: Now that the party is jumping
+...
 ```
 
 ## 5. Implement repeating-key XOR
@@ -134,10 +197,27 @@ Expected Output:
 
 > _5.py_
 ```python
+plaintxt = b'Burning \'em, if you ain\'t quick and nimble\nI go crazy when I hear a cymbal'
+
+key = "ICE"
+
+ciphertxt = bytearray(len(plaintxt))
+for (i, b) in enumerate(plaintxt):
+    ciphertxt[i] = (b ^ ord(key[i%len(key)]))
+
+ciphertxt = bytes(ciphertxt)
+
+print(ciphertxt)
+print(ciphertxt.hex())
 ```
 
 ```bash
+$ python3 5.py
+b'\x0b67\'*+.cb,.ii*#i:*<c$ -b=c4<*&"c$\'\'e\'*(+/ C\ne.,e*1$3:e>+ \'c\x0ci+ (1e(c&0.\'(/'
+0b3637272a2b2e63622c2e69692a23693a2a3c6324202d623d63343c2a26226324272765272a282b2f20430a652e2c652a3124333a653e2b2027630c692b20283165286326302e27282f
 ```
+
+- Which matches the expected output and hence we can move forward
 
 ## 6. Break repeating-key XOR
 
