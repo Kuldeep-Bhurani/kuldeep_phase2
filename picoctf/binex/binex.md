@@ -556,6 +556,7 @@ _Meanwhile in another console_
 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaapico'
 ```
 
+_Back to the main console_
 ```bash
 Enter your choice: 2
 Data for buffer: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaapico
@@ -619,6 +620,7 @@ _Meanwhile in another console_
 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaapico'
 ```
 
+_Back to the main console_
 ```bash
 Enter your choice: 2
 Data for buffer: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaapico
