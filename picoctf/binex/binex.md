@@ -525,6 +525,10 @@ Partial RELRO   No canary found   NX enabled    PIE enabled     No RPATH   No RU
 - Next I run the attack locally to test it
 
 ```bash
+$ chmod +x chall
+```
+
+```bash
 $ ./chall
 
 Welcome to heap1!
@@ -650,3 +654,31 @@ YOU WIN
 picoCTF{starting_to_get_the_hang_b9064d7c}
 ```
 
+## BONUS 4. handoff
+
+In this challenge
+
+- Source Code: [handoff.c](./handoff/handoff.c)
+- Binary: [handoff](./handoff/handoff)
+
+### My Solution
+
+**Flag:**``
+
+**Steps:**
+- My first step was to analyse the executable file for which I ran the `file` and `checksec` commands
+
+```bash
+$ file handoff
+handoff: ELF 64-bit LSB executable, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, BuildID[sha1]=92ca62928eb98ee283995cddad65f7732aad5e0f, for GNU/Linux 3.2.0, not stripped
+```
+
+```bash
+$ checksec --file=handoff
+RELRO           STACK CANARY      NX            PIE             RPATH      RUNPATH      Symbols         FORTIFY Fortified       Fortifiable     FILE
+Partial RELRO   No canary found   NX disabled   No PIE          No RPATH   No RUNPATH   73 Symbols        No    0               1               handoff
+```
+
+- The given file is a 64-bit ELF executable and for the given file almost no protection has been enebled
+
+ 
