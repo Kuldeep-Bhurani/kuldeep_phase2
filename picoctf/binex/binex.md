@@ -646,3 +646,7 @@ Enter your choice: 4
 YOU WIN
 picoCTF{starting_to_get_the_hang_b9064d7c}
 ```
+
+### Notes
+- I noticed later that when the variables are being assigned a location using malloc they are also assigned a size of `32` so we don't need to use python to build the payload everytime the payload remains the same
+- Also doing it this way may prove helpful when the size is also being randomly picked between 2 numbers (potentially in some challenge)
